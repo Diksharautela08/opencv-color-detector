@@ -1,21 +1,21 @@
-# Interactive Color & Skin Detector using OpenCV
+# Interactive Precision Color & Skin Inspector (OpenCV)
 
-An advanced Computer Vision mini-project built using Python and OpenCV that captures live webcam input and interactively detects and names colors (along with Skin Tone recognition) using HSV color space and multi-pixel sampling.
+An advanced, interactive Computer Vision application built using Python and OpenCV. It captures a live webcam feed and allows users to click anywhere on the screen to instantly inspect, analyze, and retrieve accurate color names, RGB values, and HEX codes using an optimized HSV color-space engine.
 
 ## 📌 Problem Statement
-Standard color detection systems often struggle with unstable lighting conditions or single-pixel inaccuracies. The goal of this project is to build an interactive, robust color detection tool that samples a region of interest (ROI) when clicked and accurately translates the color into human-readable names using HSV color thresholds.
+Standard color detectors often fail under variable indoor lighting or suffer from single-pixel noise, frequently confusing similar shades (such as confusing vibrant orange with skin tones, or white with gray). This project solves these challenges by utilizing an interactive **Click-to-Inspect ROI (Region of Interest) patch-sampling mechanism** combined with an advanced **HSV-based classification pipeline**.
 
 ## 🚀 Approach & Methodology
-1. **Live Feed & Interaction:** Captures real-time video using `cv2.VideoCapture(0)` and listens for left-click events via OpenCV Mouse Callbacks.
-2. **Multi-Pixel Region Sampling (ROI):** Instead of checking a single unstable pixel, the script extracts a 10x10 patch around the clicked coordinate and calculates the average BGR and HSV values for stability.
-3. **HSV Color Space Conversion:** Converts BGR frames to HSV (Hue, Saturation, Value) format, making color classification immune to ambient lighting changes.
-4. **Smart Classification Logic:** Uses tailored threshold ranges to accurately distinguish between Primary Colors, Grayscale, Browns, and Human Skin Tones.
+1. **Multi-Threaded Video Stream:** Implements a thread-safe video capture buffer to guarantee zero-lag, real-time performance.
+2. **Interactive Mouse Sampling:** Listens for left-click events via OpenCV callbacks. When clicked, it extracts a multi-pixel patch around the coordinate to eliminate single-pixel noise.
+3. **HSV Color Space Conversion:** Converts BGR values into HSV (Hue, Saturation, Value) format, making color classification robust against shadows and ambient room lighting changes.
+4. **Smart Calibration Logic:** Uses precision thresholds to accurately distinguish between human skin tones, vibrant oranges, pure greens, whites, grays, and secondary hues.
 
-## 📊 Features
-- Interactive single-click color inspection.
-- Accurate detection of Red, Green, Blue, Yellow, Orange, Brown, Black, White, and Human Skin Tones.
-- Dynamic info banner showing live HSV values and the detected color name.
-- Smart text-contrast rendering for high readability.
+## 📊 Key Features
+- **Click-to-Inspect Architecture:** Click anywhere on the video feed to freeze and analyze the exact object or fabric color.
+- **Detailed Color Metadata:** Displays the human-readable color name, precise RGB tuple, and exact **HEX code** (`#RRGGBB`).
+- **Enterprise HUD Dashboard:** Features a dynamic UI panel with a live border color matching the exact sampled shade.
+- **Lighting Resilience:** Specially tuned thresholds to prevent false positives on white, gray, and skin tones under standard indoor lighting.
 
 ## 🛠️ Setup & Run Instructions
 
@@ -25,13 +25,13 @@ Make sure Python is installed on your system.
 ### Installation Steps
 1. Clone the repository:
    ```bash
-   git clone <your-repository-url>
-   cd <repository-folder>
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-3. Run the project:
-   ```bash
+   git clone https://github.com/Diksharautela08/opencv-color-detector.git
+   cd ColorDetector
+2. Install required dependencies:
+   ```Bash
+   pip install opencv-python numpy
+3. Run the application:
+   ```Bash
    python main.py
 
-Note: Press the 'q' key while the webcam window is active to exit the application. 
+Note: Point any object or wear any colored clothing, click anywhere on the live video window to inspect it, and press the 'q' key to exit.
